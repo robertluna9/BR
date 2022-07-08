@@ -43,7 +43,7 @@ def get_authenticated_service():
   credentials = flow.run_console()
   return build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
 
-def initialize_upload(youtube, options, "https://streamable.com/l/31cpry/mp4.mp4"):
+def initialize_upload(youtube, options, MEDIA_FILE_PATH):
   tags = None
   if options.keywords:
     tags = options.keywords.split(',')
@@ -64,7 +64,7 @@ def initialize_upload(youtube, options, "https://streamable.com/l/31cpry/mp4.mp4
     part=','.join(body.keys()),
     body=body,
 
-    media_body=MediaFileUpload("https://streamable.com/l/31cpry/mp4.mp4", chunksize=-1, resumable=True)
+    media_body=MediaFileUpload(MEDIA_FILE_PATH, chunksize=-1, resumable=True)
   )
 
   resumable_upload(insert_request)
